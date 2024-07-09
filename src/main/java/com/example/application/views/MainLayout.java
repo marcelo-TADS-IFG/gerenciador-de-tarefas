@@ -55,10 +55,10 @@ public class MainLayout extends AppLayout {
         SideNav nav = new SideNav();
 
         nav.addItem(new SideNavItem("Prioridade", PrioridadeView.class, LineAwesomeIcon.ALLERGIES_SOLID.create()));
-        nav.addItem(new SideNavItem("Responsavel", ResponsavelView.class, LineAwesomeIcon.USER.create()));
+        nav.addItem(new SideNavItem("Responsável", ResponsavelView.class, LineAwesomeIcon.USER.create()));
         nav.addItem(new SideNavItem("Status", StatusView.class, LineAwesomeIcon.BABY_SOLID.create()));
         nav.addItem(
-                new SideNavItem("Categoria Tarefa", CategoriaTarefaView.class, LineAwesomeIcon.ARCHIVE_SOLID.create()));
+                new SideNavItem("Categoria da Tarefa", CategoriaTarefaView.class, LineAwesomeIcon.ARCHIVE_SOLID.create()));
         nav.addItem(new SideNavItem("Lista de Tarefas", ListadeTarefasView.class,
                 LineAwesomeIcon.BOOK_OPEN_SOLID.create()));
 
