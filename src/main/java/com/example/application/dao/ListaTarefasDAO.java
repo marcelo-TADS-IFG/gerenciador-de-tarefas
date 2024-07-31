@@ -11,12 +11,22 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 
 import com.example.application.models.ListaTarefas;
-import com.example.application.models.CategoriaTarefa;
 import com.example.application.models.Prioridade;
+import com.example.application.models.CategoriaTarefa;
 import com.example.application.models.Status;
 import com.example.application.models.Responsavel;
 
+import com.example.application.controller.PrioridadeController;
+import com.example.application.controller.ResponsavelController;
+import com.example.application.controller.CategoriaTarefaController;
+import com.example.application.controller.StatusController;
+
 public class ListaTarefasDAO {
+
+    private PrioridadeController prioridadeController = new PrioridadeController();
+    private ResponsavelController responsavelController = new ResponsavelController();
+    private CategoriaTarefaController categoriaTarefaController = new CategoriaTarefaController();
+    private StatusController statusController = new StatusController();
 
     public boolean salvar(ListaTarefas listaTarefas) {
         try {
@@ -107,11 +117,16 @@ public class ListaTarefasDAO {
                         resultSet.getTimestamp("data_tarefa").toLocalDateTime(),
                         resultSet.getString("descricao_tarefa"),
                         resultSet.getString("observacao"),
-                        new Prioridade(resultSet.getInt("id_prioridade")),
-                        new CategoriaTarefa(resultSet.getInt("id_categoria")),
-                        new Status(resultSet.getInt("id_status")),
-                        new Responsavel(resultSet.getInt("id_responsavel"))
-                );
+
+                        prioridadeController.buscarPrioridade(resultSet.getInt("id_prioridade")),
+                        categoriaTarefaController.buscarCategoriaTarefa(resultSet.getInt("id_categoria")),
+                        statusController.buscarStatus(resultSet.getInt("id_status")),
+                        responsavelController.buscarResponsavel(resultSet.getInt("id_responsavel")));
+
+                // new Prioridade(resultSet.getInt("id_categoria")),
+                // new CategoriaTarefa(resultSet.getInt("id_categoria")),
+                // new Status(resultSet.getInt("id_status")),
+                // new Responsavel(resultSet.getInt("id_responsavel")));
                 return listaTarefas;
             }
 
@@ -140,10 +155,11 @@ public class ListaTarefasDAO {
                         resultSet.getTimestamp("data_tarefa").toLocalDateTime(),
                         resultSet.getString("descricao_tarefa"),
                         resultSet.getString("observacao"),
-                        new Prioridade(resultSet.getInt("id_prioridade")),
-                        new CategoriaTarefa(resultSet.getInt("id_categoria")),
-                        new Status(resultSet.getInt("id_status")),
-                        new Responsavel(resultSet.getInt("id_responsavel"))
+                        prioridadeController.buscarPrioridade(resultSet.getInt("id_prioridade")),
+                        categoriaTarefaController.buscarCategoriaTarefa(resultSet.getInt("id_categoria")),
+                        statusController.buscarStatus(resultSet.getInt("id_status")),
+                        responsavelController.buscarResponsavel(resultSet.getInt("id_responsavel"))
+
                 );
                 lista.add(listaTarefas);
             }
